@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+
+    <body>
+			<form action="" method="post">
+        {% csrf_token %}
+        <h2>Are you sure you want to delete the blog?</h2><br>
+        <input type="submit" value="Yes"/>
+				<a href="/blog">Cancel</a>
+			</form> 
+  </body>
+
+</html>

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+       <img src="/media/{{blog.image}}" alt="">
+       <div>{{blog.title}}</div>
+       <div>{{blog.body}}</div>
+       <a href="{% url 'delete_blog' blog.id %}"><button>Delete</button></a>
+       <a href="{% url 'update_blog' blog.id %}"><button>Update</button></a>
+       <a href="http://127.0.0.1:8000/blogs"><button>Back</button></a>
+	   <button type="submit" onclick="unlikeblog({{blog.id}})" id="unlike-button">Liked</button>
+	   <button type="submit" onclick="likeblog({{blog.id}})" id="like-button">Like</button>
+
+	<script>
+		{% if liked %}
+		document.getElementById('like-button').style.display="none";
+		{% else %}
+		document.getElementById('unlike-button').style.display="none";
+		{% endif %}
+
+
+		function likeblog(blog_id) {
+		  var xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+			  console.log(this.responseText)
+			  console.log(this.status, typeof this.status)
+			if (this.status == 200) {
+				document.getElementById('like-button').style.display="none";
+				document.getElementById('unlike-button').style.display="block";
+			}
+		  };
+		  xhttp.open("POST", "/like-blog/" + blog_id, true);
+		  xhttp.send();
+		}
+
+		function likeblog(blog_id) {
+		  var xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+			  console.log(this.responseText)
+			  console.log(this.status, typeof this.status)
+			if (this.status == 200) {
+				document.getElementById('like-button').style.display="block";
+				document.getElementById('unlike-button').style.display="none";
+			}
+		  };
+		  xhttp.open("POST", "/like-blog/" + blog_id, true);
+		  xhttp.send();
+		}
+	</script>
+       {% endblock content %}
+
+       
+  

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+   <body>
+    Profile:
+    <p>Name:{{request.user.get_full_name}}</p>
+    <table>
+        <tr>
+            <th>Blog title</th>
+            <th>Blog body</th>
+        </tr>
+        {% for blog in blogs %}
+        <tr>
+            <td>{{blog.title}}</td>
+            <td>{{blog.body}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="http://127.0.0.1:8000/blogs"><button>Back</button></a>
+
+  </body>
+</html>
